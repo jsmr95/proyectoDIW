@@ -1,0 +1,9 @@
+#divComienzo{
+    position:absolute;
+    width: 150px;
+    height: auto;
+    top: 20%;
+    bottom: 20%;
+    border: solid 1px;
+    border-left: none;
+}
