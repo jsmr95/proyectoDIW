@@ -1,4 +1,4 @@
-#divComienzo{
+#divPresentacion{
     position:absolute;
     width: auto;
     top: 10%;
@@ -6,6 +6,16 @@
     left: 30%;
     right: 30%;
     background: radial-gradient(circle, #ccccff 25%, white 40%);
+}
+
+#divComienzo{
+    position:absolute;
+    width: 150px;
+    height: auto;
+    top: 20%;
+    bottom: 20%;
+    border-radius: 7px;
+    border: solid 1px;
 }
 
 .titulo{
