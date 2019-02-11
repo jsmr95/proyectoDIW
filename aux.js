@@ -14,6 +14,7 @@ function presentacion(){
 }
 
 function comenzar(){
+    //Creo el div de herramientas
     var div = $(`<div id='divComienzo'></div>`);
     $(document.body).append(div);
     div.draggable();
@@ -24,9 +25,58 @@ function comenzar(){
     $('#minimizar').click(function(){
         if ($('div').css('height') != '32px') {
             $('div').css('height', '32px');
+            $('#divComienzo .container').remove();
         }else {
             $('div').css('height', `${alto}`);
+            herramientas();
         }
     });
+    herramientas();
+    consejos();
+}
 
+function consejos()
+{
+    //Lo realizo con funciones callback, para que se ejecuten en serie
+    var div1 = $(`<div class='consejo' style='display: none'><p>A su Izquierda
+    podrás ver el panel de herramientas, donde podrás ir añadiendo, eliminando o
+     modificando elementos de su página.</p></div>`);
+    $(document.body).append(div1);
+    $('.consejo').fadeIn(2000);
+
+    setTimeout(function(){
+        $('.consejo').fadeOut(2000,function(){
+            $('.consejo').remove();
+            var div1 = $(`<div class='consejo' style='display: none'><p>En la parte
+            superior podrás encontrar un botón para acceder a la vista previa de la
+            página.</p></div>`);
+            $(document.body).append(div1);
+            $('.consejo').fadeIn(2000);
+
+            setTimeout(function(){
+                $('.consejo').fadeOut(2000, function(){
+                    $('.consejo').remove();
+                    var div1 = $(`<div class='consejo' style='display: none'><p>Bienvenido!</p></div>`);
+                    $(document.body).append(div1);
+                    $('.consejo').fadeIn(2000);
+                    setTimeout(function(){
+                        $('.consejo').fadeOut(2000)}
+                        ,3000);
+                })}
+                ,6000);
+        })}
+        ,6000);
+
+}
+
+function herramientas()
+{
+    $('#divComienzo').append(`<div class='container'></div>`);
+    $('.container').append(`<div class='row'>
+                                <button class='col-xs-1'>HOLA</button>
+                            </div>
+                            <div class='row'>
+                                <button class='col-xs-1'>HOLA</button>
+                            </div>
+                            `);
 }

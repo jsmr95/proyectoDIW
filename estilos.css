@@ -10,7 +10,7 @@
 
 #divComienzo{
     position:absolute;
-    width: 150px;
+    width: 125px;
     height: auto;
     top: 20%;
     bottom: 20%;
@@ -27,4 +27,24 @@
 .titulo1{
     font-size: 20px;
     text-align: center;
+}
+
+.consejo{
+    position:absolute;
+    border-radius: 7px;
+    top: 35%;
+    bottom: 45%;
+    left: 40%;
+    right: 40%;
+}
+
+.consejo p{
+    text-align: center;
+    font-style: italic;
+    font-size: 25px;
+}
+
+button{
+    border-radius: 10px;
+    width: 50px;
 }
