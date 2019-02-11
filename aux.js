@@ -3,7 +3,7 @@ function presentacion(){
         var div = $(`<div id='divPresentacion' style='display: none'></div>`);
         $(div).append(`<h1 class="titulo">Bienvenido al gestor de contenido de Gallego</h1>`);
         $(div).append(`<h1 class="titulo1">Proyecto DIW</h1>`);
-        $(div).append(`<button> Comenzar </button>`);
+        $(div).append(`<button class='col-md-4 col-md-offset-4'> Comenzar </button>`);
         $(document.body).append(div);
         $(div).fadeIn(1000);
         $('button').click(function(){
