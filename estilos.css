@@ -16,6 +16,8 @@
     bottom: 20%;
     border-radius: 7px;
     border: solid 1px;
+    z-index: 1;
+    background-color: white;
 }
 
 .titulo{
