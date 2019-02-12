@@ -23,11 +23,11 @@ function comenzar(){
     </p>`);
     var alto = $('div').css('height');
     $('#minimizar').click(function(){
-        if ($('div').css('height') != '32px') {
-            $('div').css('height', '32px');
+        if ($('#divComienzo').css('height') != '32px') {
+            $('#divComienzo').css('height', '32px');
             $('#divComienzo .container').remove();
         }else {
-            $('div').css('height', `${alto}`);
+            $('#divComienzo').css('height', `${alto}`);
             herramientas();
         }
     });
@@ -112,4 +112,12 @@ function titulo()
     var divTitulo = $(`<div class='divTitulo'></div>`);
     $(document.body).append(divTitulo);
     divTitulo.draggable();
+    var p = $(`<p style='text-align:center;margin-top:5px'>Titulo
+    <span class="cerrar glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </p>`);
+    divTitulo.append(p);
+    $('.cerrar').click(function(){
+        $(this).parent().parent().remove();
+    });
+
 }
