@@ -49,7 +49,7 @@ function consejos()
             $('.consejo').remove();
             var div1 = $(`<div class='consejo' style='display: none'><p>En la parte
             superior podrás encontrar un botón para acceder a la vista previa de la
-            página.</p></div>`);
+            página (debes de haber incluido algún elemento).</p></div>`);
             $(document.body).append(div1);
             $('.consejo').fadeIn(2000);
 
@@ -73,10 +73,22 @@ function herramientas()
 {
     $('#divComienzo').append(`<div class='container'></div>`);
     $('.container').append(`<div class='row'>
-                                <button class='col-xs-1'>HOLA</button>
+                                <button class='col-xs-1'>Titulo</button>
                             </div>
                             <div class='row'>
-                                <button class='col-xs-1'>HOLA</button>
+                                <button class='col-xs-1'>Formulario</button>
+                            </div>
+                            <div class='row'>
+                                <button class='col-xs-1'>Div</button>
+                            </div>
+                            <div class='row'>
+                                <button class='col-xs-1'>Inputs</button>
+                            </div>
+                            <div class='row'>
+                                <button class='col-xs-1'>Imagen</button>
+                            </div>
+                            <div class='row'>
+                                <button class='col-xs-1'>Enlace</button>
                             </div>
                             `);
 }
