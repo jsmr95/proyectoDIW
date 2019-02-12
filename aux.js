@@ -38,6 +38,7 @@ function comenzar(){
 function consejos()
 {
     //Lo realizo con funciones callback, para que se ejecuten en serie
+
     var div1 = $(`<div class='consejo' style='display: none'><p>A su Izquierda
     podrás ver el panel de herramientas, donde podrás ir añadiendo, eliminando o
      modificando elementos de su página.</p></div>`);
@@ -66,29 +67,49 @@ function consejos()
                 ,6000);
         })}
         ,6000);
-
 }
 
 function herramientas()
 {
     $('#divComienzo').append(`<div class='container'></div>`);
     $('.container').append(`<div class='row'>
-                                <button class='col-xs-1'>Titulo</button>
+                                <button class='col-xs-9'>Titulo</button>
                             </div>
                             <div class='row'>
-                                <button class='col-xs-1'>Formulario</button>
+                                <button class='col-xs-9'>Encabezado</button>
                             </div>
                             <div class='row'>
-                                <button class='col-xs-1'>Div</button>
+                                <button class='col-xs-9'>Pie Página</button>
                             </div>
                             <div class='row'>
-                                <button class='col-xs-1'>Inputs</button>
+                                <button class='col-xs-9'>Formulario</button>
                             </div>
                             <div class='row'>
-                                <button class='col-xs-1'>Imagen</button>
+                                <button class='col-xs-9'>Div</button>
                             </div>
                             <div class='row'>
-                                <button class='col-xs-1'>Enlace</button>
+                                <button class='col-xs-9'>Inputs</button>
+                            </div>
+                            <div class='row'>
+                                <button class='col-xs-9'>Imagen</button>
+                            </div>
+                            <div class='row'>
+                                <button class='col-xs-9'>Enlace</button>
                             </div>
                             `);
+    botones();
+}
+
+function botones()
+{
+    $(':button').click(function(){
+        titulo();
+    });
+}
+
+function titulo()
+{
+    var divTitulo = $(`<div class='divTitulo'></div>`);
+    $(document.body).append(divTitulo);
+    divTitulo.draggable();
 }

@@ -20,6 +20,13 @@
     background-color: white;
 }
 
+#botonCambio{
+    position: absolute;
+    text-align: center;
+    right: 49%;
+    width: auto;
+}
+
 .titulo{
     font-size: 40px;
     text-align: center;
@@ -44,6 +51,21 @@
     text-align: center;
     font-style: italic;
     font-size: 25px;
+}
+
+.divTitulo{
+    position:absolute;
+    border-radius: 7px;
+    top: 35%;
+    bottom: 45%;
+    left: 40%;
+    right: 40%;
+    border: solid 1px;
+    background-color: white;
+}
+
+.container{
+    max-width: 150px;
 }
 
 button{
