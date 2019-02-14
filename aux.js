@@ -105,9 +105,16 @@ function herramientas()
 
 function botones()
 {
+
     $(':button').click(function(){
-        titulo();
+        switch ($(this)[0].innerHTML) {
+            case 'Titulo':
+                titulo();
+                break;
+            default:
+        }
     });
+
 }
 
 function titulo()
