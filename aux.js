@@ -61,7 +61,10 @@ function consejos()
                     $(document.body).append(div1);
                     $('.consejo').fadeIn(2000);
                     setTimeout(function(){
-                        $('.consejo').fadeOut(2000)}
+                        $('.consejo').fadeOut(2000,function(){
+                            $('.consejo').remove()
+
+                        }) }
                         ,3000);
                 })}
                 ,6000);
