@@ -108,10 +108,10 @@ function botones()
     $(':button').click(function(){
         switch ($(this)[0].innerHTML) {
             case 'Titulo':
-                titulo();
+                boton('Titulo');
                 break;
             case 'Encabezado':
-                encabezado();
+                boton('Encabezado');
                 break;
             default:
         }
@@ -126,25 +126,13 @@ function generarLabelConCerrar(string)
     </p>`);
 }
 
-function titulo()
+function boton(nombreDiv)
 {
-    var divTitulo = $(`<div class='divTitulo'></div>`);
-    $(document.body).append(divTitulo);
-    divTitulo.draggable();
-    var p = generarLabelConCerrar('Titulo');
-    divTitulo.append(p);
-    $('.cerrar').click(function(){
-        $(this).parent().parent().remove();
-    });
-}
-
-function encabezado()
-{
-    var divEncabezado = $(`<div class='divEncabezado'></div>`);
-    $(document.body).append(divEncabezado);
-    divEncabezado.draggable();
-    var p = generarLabelConCerrar('Encabezado');
-    divEncabezado.append(p);
+    var div = $(`<div class='div${nombreDiv}'></div>`);
+    $(document.body).append(div);
+    div.draggable();
+    var p = generarLabelConCerrar(`${nombreDiv}`);
+    div.append(p);
     $('.cerrar').click(function(){
         $(this).parent().parent().remove();
     });
