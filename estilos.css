@@ -83,3 +83,69 @@ button{
     border: solid 1px;
     background-color: white;
 }
+
+.divPie{
+    position:absolute;
+    border-radius: 7px;
+    top: 35%;
+    bottom: 45%;
+    left: 40%;
+    right: 40%;
+    border: solid 1px;
+    background-color: white;
+}
+
+.divFormulario{
+    position:absolute;
+    border-radius: 7px;
+    top: 35%;
+    bottom: 45%;
+    left: 40%;
+    right: 40%;
+    border: solid 1px;
+    background-color: white;
+}
+
+.divDiv{
+    position:absolute;
+    border-radius: 7px;
+    top: 35%;
+    bottom: 45%;
+    left: 40%;
+    right: 40%;
+    border: solid 1px;
+    background-color: white;
+}
+
+.divInputs{
+    position:absolute;
+    border-radius: 7px;
+    top: 35%;
+    bottom: 45%;
+    left: 40%;
+    right: 40%;
+    border: solid 1px;
+    background-color: white;
+}
+
+.divImagen{
+    position:absolute;
+    border-radius: 7px;
+    top: 35%;
+    bottom: 45%;
+    left: 40%;
+    right: 40%;
+    border: solid 1px;
+    background-color: white;
+}
+
+.divEnlace{
+    position:absolute;
+    border-radius: 7px;
+    top: 35%;
+    bottom: 45%;
+    left: 40%;
+    right: 40%;
+    border: solid 1px;
+    background-color: white;
+}

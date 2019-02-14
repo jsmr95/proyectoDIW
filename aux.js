@@ -113,7 +113,24 @@ function botones()
             case 'Encabezado':
                 boton('Encabezado');
                 break;
-            default:
+            case 'Pie Página':
+                boton('Pie Página');
+                break;
+            case 'Formulario':
+                boton('Formulario');
+                break;
+            case 'Div':
+                boton('Div');
+                break;
+            case 'Inputs':
+                boton('Inputs');
+                break;
+            case 'Imagen':
+                boton('Imagen');
+                break;
+            case 'Enlace':
+                boton('Enlace');
+                break;
         }
     });
 
