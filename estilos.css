@@ -53,6 +53,15 @@
     font-size: 25px;
 }
 
+.container{
+    max-width: 150px;
+}
+
+button{
+    border-radius: 10px;
+    width: 50px;
+}
+
 .divTitulo{
     position:absolute;
     border-radius: 7px;
@@ -64,11 +73,13 @@
     background-color: white;
 }
 
-.container{
-    max-width: 150px;
-}
-
-button{
-    border-radius: 10px;
-    width: 50px;
+.divEncabezado{
+    position:absolute;
+    border-radius: 7px;
+    top: 35%;
+    bottom: 45%;
+    left: 40%;
+    right: 40%;
+    border: solid 1px;
+    background-color: white;
 }
