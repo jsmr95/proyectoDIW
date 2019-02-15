@@ -171,4 +171,11 @@ function cuerpoTitulo()
         $(this).parent().remove();
 
     });
+    $('#confirmar').click(function(){
+        var sele = $(':selected').text();
+        var text = $('#texto').val();
+        var h = $(`<${sele}>${text}</${sele}>`);
+        $(document.body).append(h);
+        h.draggable();
+    });
 }
