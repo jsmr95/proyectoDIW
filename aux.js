@@ -109,6 +109,7 @@ function botones()
         switch ($(this)[0].innerHTML) {
             case 'Titulo':
                 boton('Titulo');
+                cuerpoTitulo();
                 break;
             case 'Encabezado':
                 boton('Encabezado');
@@ -136,11 +137,9 @@ function botones()
 
 }
 
-function generarLabelConCerrar(string)
+function generarLabel(string)
 {
-    return $(`<p style='text-align:center;margin-top:5px'>${string}
-    <span class="cerrar glyphicon glyphicon-remove" aria-hidden="true"></span>
-    </p>`);
+    return $(`<p style='text-align:center;margin-top:5px'>${string} </p>`);
 }
 
 function boton(nombreDiv)
@@ -148,9 +147,28 @@ function boton(nombreDiv)
     var div = $(`<div class='div${nombreDiv}'></div>`);
     $(document.body).append(div);
     div.draggable();
-    var p = generarLabelConCerrar(`${nombreDiv}`);
+    var p = generarLabel(`${nombreDiv}`);
     div.append(p);
-    $('.cerrar').click(function(){
-        $(this).parent().parent().remove();
+}
+
+function cuerpoTitulo()
+{
+    var div = $(`.divTitulo`);
+    var cuerpo = $(`<span>Escoga su tamaño:</span> <select>
+                        <option>h1</option>
+                        <option>h2</option>
+                        <option>h3</option>
+                        <option>h4</option>
+                        <option>h5</option>
+                        <option>h6</option>
+                    </select><br/><br>
+                    <span>Texto:</span>
+                    <input type="text" id="texto" style="margin-left:15px"/><br><br>
+                    <button style="margin-left: 50px" id="confirmar">Confirmar</button>
+                    <button id="cancelar">Cancelar</button>`);
+    div.append(cuerpo);
+    $('#cancelar').click(function(){
+        $(this).parent().remove();
+
     });
 }

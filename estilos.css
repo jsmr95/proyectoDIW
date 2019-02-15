@@ -59,14 +59,14 @@
 
 button{
     border-radius: 10px;
-    width: 50px;
+    width: auto;
 }
 
 .divTitulo{
     position:absolute;
     border-radius: 7px;
     top: 35%;
-    bottom: 45%;
+    bottom: 38%;
     left: 40%;
     right: 40%;
     border: solid 1px;
