@@ -177,5 +177,6 @@ function cuerpoTitulo()
         var h = $(`<${sele}>${text}</${sele}>`);
         $(document.body).append(h);
         h.draggable();
+        $(this).parent().remove();
     });
 }
