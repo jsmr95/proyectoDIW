@@ -122,6 +122,7 @@ function botones()
                 break;
             case 'Div':
                 boton('Div');
+                cuerpoDiv();
                 break;
             case 'Inputs':
                 boton('Inputs');
@@ -177,6 +178,56 @@ function cuerpoTitulo()
         var h = $(`<${sele}>${text}</${sele}>`);
         $(document.body).append(h);
         h.draggable();
+        $(this).parent().remove();
+    });
+}
+
+function cuerpoDiv()
+{
+    var div = $(`.divDiv`);
+    var cuerpo = $(`<span>Escoga su ancho(en px):<input type='text' id='ancho'></input></span><br/>
+                    <span>Escoga su altura(en px):<input type='text' id='alto'></input></span><br/>
+                    <span>Borde: </span><input id='check' type='checkbox'/><br/>
+                    <button style="margin-left: 50px" id="confirmar">Confirmar</button>
+                    <button id="cancelar">Cancelar</button>`);
+    div.append(cuerpo);
+    $('#cancelar').click(function(){
+        $(this).parent().remove();
+
+    });
+    $('#check').change(function(){
+        if ($(this).prop('checked')) {
+            var opciones = $(`<span><br>Tamaño del borde:
+                        <select>
+                            <option>1px</option>
+                            <option>2px</option>
+                            <option>3px</option>
+                            <option>4px</option>
+                            <option>5px</option>
+                            <option>10px</option>
+                            <option>15px</option>
+                            <option>20px</option>
+                        </select>
+                    </span>`);
+            $('#check').after(opciones);
+        }else {
+            $(this).next().remove();
+        }
+    });
+
+    $('#confirmar').click(function(){
+        var ancho = $('#ancho').val();
+        var altura = $('#alto').val();
+        if ($('#check').prop('checked')) {
+            var tam = $(':selected').text();
+            var div = $(`<div style='border:solid ${tam},width:${ancho},height:${altura},
+                position:absolute'></div>`);
+        }else {
+            var div = $(`<div style="width:${ancho},height:${altura}
+                        , position:absolute, border:solid 1px"></div>`);
+        }
+        $(document.body).append(div);
+        div.draggable();
         $(this).parent().remove();
     });
 }
