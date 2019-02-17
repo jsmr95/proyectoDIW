@@ -126,6 +126,7 @@ function botones()
                 break;
             case 'Inputs':
                 boton('Inputs');
+                cuerpoInputs();
                 break;
             case 'Imagen':
                 boton('Imagen');
@@ -164,7 +165,7 @@ function cuerpoTitulo()
                         <option>h6</option>
                     </select><br/><br>
                     <span>Texto:</span>
-                    <input type="text" id="texto" style="margin-left:15px"/><br><br>
+                    <input type="text" id="textoTitulo" style="margin-left:15px"/><br><br>
                     <button style="margin-left: 50px">Confirmar</button>
                     <button>Cancelar</button>`);
     div.append(cuerpo);
@@ -174,7 +175,7 @@ function cuerpoTitulo()
     });
     $('button:contains("Confirmar")').click(function(){
         var sele = $(':selected').text();
-        var text = $('#texto').val();
+        var text = $('#textoTitulo').val();
         var h = $(`<${sele}>${text}</${sele}>`);
         $(document.body).append(h);
         h.draggable();
@@ -187,7 +188,7 @@ function cuerpoDiv()
     var div = $(`.divDiv`);
     var cuerpo = $(`<span>Escoga su ancho(en px):<input type='text' name='ancho'></input></span><br/>
                     <span>Escoga su altura(en px):<input type='text' name='alto'></input></span><br/>
-                    <span>Borde: </span><input type='checkbox' id='check'/><br/>
+                    <span>Borde: </span><input type='checkbox' id='checkDiv'/><br/>
                     <button style="margin-left: 50px">Confirmar</button>
                     <button>Cancelar</button>`);
     div.append(cuerpo);
@@ -195,7 +196,7 @@ function cuerpoDiv()
         $(this).parent().remove();
 
     });
-    $('#check').change(function(){
+    $('#checkDiv').change(function(){
         if ($(this).prop('checked')) {
             var opciones = $(`<span><br>Tamaño del borde:
                         <select>
@@ -228,6 +229,39 @@ function cuerpoDiv()
         }
         $(document.body).append(div);
         div.draggable();
+        $(this).parent().remove();
+    });
+}
+
+function cuerpoInputs()
+{
+    var div = $(`.divInputs`);
+    var cuerpo = $(`<span><br>Seleccione tipo:
+                <select>
+                    <option>text</option>
+                    <option>button</option>
+                    <option>password</option>
+                    <option>submit</option>
+                    <option>reset</option>
+                    <option>checkbox</option>
+                </select>
+            </span><br>
+            <span>Label:</span>
+            <input type="text" id="textoInput" style="margin-left:15px"/><br><br>
+            <button style="margin-left: 50px">Confirmar</button>
+            <button>Cancelar</button>`);
+    div.append(cuerpo);
+
+    $('button:contains("Cancelar")').click(function(){
+        $(this).parent().remove();
+
+    });
+    $('button:contains("Confirmar")').click(function(){
+        var sele = $(':selected').text();
+        var text = $('#textoInput').val();
+        var input = $(`<span>${text}<input type='${sele}'></input></span>`);
+        $(document.body).append(input);
+        input.draggable();
         $(this).parent().remove();
     });
 }
