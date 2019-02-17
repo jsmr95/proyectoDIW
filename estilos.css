@@ -66,9 +66,7 @@ button{
     position:absolute;
     border-radius: 7px;
     top: 35%;
-    bottom: 38%;
     left: 40%;
-    right: 40%;
     border: solid 1px;
     background-color: white;
 }
@@ -110,9 +108,8 @@ button{
     position:absolute;
     border-radius: 7px;
     top: 35%;
-    bottom: 38%;
     left: 38%;
-    right: 38%;
+    height: 165px;
     border: solid 1px;
     background-color: white;
 }
@@ -121,7 +118,7 @@ button{
     position:absolute;
     border-radius: 7px;
     top: 35%;
-    bottom: 45%;
+    bottom: 40%;
     left: 40%;
     right: 40%;
     border: solid 1px;

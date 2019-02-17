@@ -165,14 +165,14 @@ function cuerpoTitulo()
                     </select><br/><br>
                     <span>Texto:</span>
                     <input type="text" id="texto" style="margin-left:15px"/><br><br>
-                    <button style="margin-left: 50px" id="confirmar">Confirmar</button>
-                    <button id="cancelar">Cancelar</button>`);
+                    <button style="margin-left: 50px">Confirmar</button>
+                    <button>Cancelar</button>`);
     div.append(cuerpo);
-    $('#cancelar').click(function(){
+    $('button:contains("Cancelar")').click(function(){
         $(this).parent().remove();
 
     });
-    $('#confirmar').click(function(){
+    $('button:contains("Confirmar")').click(function(){
         var sele = $(':selected').text();
         var text = $('#texto').val();
         var h = $(`<${sele}>${text}</${sele}>`);
@@ -185,13 +185,13 @@ function cuerpoTitulo()
 function cuerpoDiv()
 {
     var div = $(`.divDiv`);
-    var cuerpo = $(`<span>Escoga su ancho(en px):<input type='text' id='ancho'></input></span><br/>
-                    <span>Escoga su altura(en px):<input type='text' id='alto'></input></span><br/>
-                    <span>Borde: </span><input id='check' type='checkbox'/><br/>
-                    <button style="margin-left: 50px" id="confirmar">Confirmar</button>
-                    <button id="cancelar">Cancelar</button>`);
+    var cuerpo = $(`<span>Escoga su ancho(en px):<input type='text' name='ancho'></input></span><br/>
+                    <span>Escoga su altura(en px):<input type='text' name='alto'></input></span><br/>
+                    <span>Borde: </span><input type='checkbox' id='check'/><br/>
+                    <button style="margin-left: 50px">Confirmar</button>
+                    <button>Cancelar</button>`);
     div.append(cuerpo);
-    $('#cancelar').click(function(){
+    $('button:contains("Cancelar")').click(function(){
         $(this).parent().remove();
 
     });
@@ -215,16 +215,16 @@ function cuerpoDiv()
         }
     });
 
-    $('#confirmar').click(function(){
-        var ancho = $('#ancho').val();
-        var altura = $('#alto').val();
+    $('button:contains("Confirmar")').click(function(){
+        var ancho = $(':text[name="ancho"]').val();
+        var altura = $(':text[name="alto"]').val();
         if ($('#check').prop('checked')) {
             var tam = $(':selected').text();
-            var div = $(`<div style='border:solid ${tam},width:${ancho},height:${altura},
+            var div = $(`<div style='border:solid ${tam};width:${ancho};height:${altura};
                 position:absolute'></div>`);
         }else {
-            var div = $(`<div style="width:${ancho},height:${altura}
-                        , position:absolute, border:solid 1px"></div>`);
+            var div = $(`<div style="width:${ancho};height:${altura}
+                        ; position:absolute; border:solid 1px"></div>`);
         }
         $(document.body).append(div);
         div.draggable();
