@@ -312,6 +312,6 @@ function cuerpoEncabezado()
     if ($('nav').length > 0) {
         alert('No se puede crear, ya existe un encabezado!');
     }else {
-        $(document.body).append(cuerpo);
+        $('#divComienzo').before(cuerpo);
     }
 }
