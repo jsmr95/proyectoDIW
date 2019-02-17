@@ -211,7 +211,7 @@ function cuerpoDiv()
                             <option>20px</option>
                         </select>
                     </span>`);
-            $('#check').after(opciones);
+            $('#checkDiv').after(opciones);
         }else {
             $(this).next().remove();
         }
@@ -220,7 +220,7 @@ function cuerpoDiv()
     $('button:contains("Confirmar")').click(function(){
         var ancho = $(':text[name="ancho"]').val();
         var altura = $(':text[name="alto"]').val();
-        if ($('#check').prop('checked')) {
+        if ($('#checkDiv').prop('checked')) {
             var tam = $(':selected').text();
             var div = $(`<div style='border:solid ${tam};width:${ancho};height:${altura};
                 position:absolute'></div>`);
