@@ -117,6 +117,7 @@ function botones()
                 break;
             case 'Pie Página':
                 boton('Pie Página');
+                cuerpoPie();
                 break;
             case 'Formulario':
                 boton('Formulario');
@@ -313,5 +314,20 @@ function cuerpoEncabezado()
         alert('No se puede crear, ya existe un encabezado!');
     }else {
         $('#divComienzo').before(cuerpo);
+    }
+}
+
+function cuerpoPie()
+{
+    $(`.divPie`).remove();
+    var cuerpo = $(`<footer class="footer">
+		<div class="container-fluid">
+			<p>Place sticky footer content here.</p>
+		</div>
+	</footer>`);
+    if ($('nav').length > 0) {
+        alert('No se puede crear, ya existe un pie de página!');
+    }else {
+        $('#divComienzo').after(cuerpo);
     }
 }

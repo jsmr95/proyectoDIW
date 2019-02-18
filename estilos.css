@@ -146,3 +146,15 @@ button{
     border: solid 1px;
     background-color: white;
 }
+.footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Cambia el alto fijado aquí */
+  height: 60px;
+  background-color: grey;
+}
+
+.footer p {
+    color: white;
+}
