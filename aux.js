@@ -33,6 +33,7 @@ function comenzar(){
     });
     herramientas();
     // consejos(); Lo comento para ahorrar tiempo en desarrollo
+    // coordRaton();
 }
 
 function consejos()
@@ -72,6 +73,34 @@ function consejos()
         ,6000);
 }
 
+// function coordRaton()
+// {
+//     var cuerpo = $(window);
+//     var output = $(`<div id="output" style="position:absolute; padding:5px;"></div>`);
+//     $(document.body).append(output);
+//     cuerpo.mousemove(function(evt) {
+//       var mousePos = oMousePos(cuerpo, evt);
+//       marcarCoords(output,mousePos.x, mousePos.y)
+//     });
+// }
+//
+// function marcarCoords(output, x, y) {
+//   output.innerHTML = ("x: " + x + ", y: " + y);
+//   output.style.top = (y + 10) + "px";
+//   output.style.left = (x + 10) + "px";
+//   output.style.backgroundColor = "#FFF";
+//   output.style.border = "1px solid #d9d9d9"
+//   canvas.style.cursor = "pointer";
+// }
+//
+// function oMousePos(cuerpo, evt) {
+//   var ClientRect = cuerpo.getBoundingClientRect();
+//   return { //objeto
+//     x: Math.round(evt.clientX - ClientRect.left),
+//     y: Math.round(evt.clientY - ClientRect.top)
+//   }
+// }
+
 function herramientas()
 {
     $('#divComienzo').append(`<div class='container'></div>`);
@@ -98,6 +127,9 @@ function herramientas()
                             </div>
                             <div class='row'>
                                 <button class='col-xs-9'>Enlace</button>
+                            </div>
+                            <div class='row'>
+                                <button class='col-xs-9'>Tabla</button>
                             </div>
                             `);
     botones();
@@ -135,6 +167,10 @@ function botones()
                 break;
             case 'Enlace':
                 boton('Enlace');
+                break;
+            case 'Tabla':
+                boton('Tabla');
+                cuerpoTabla();
                 break;
         }
     });
@@ -325,9 +361,43 @@ function cuerpoPie()
 			<p>Place sticky footer content here.</p>
 		</div>
 	</footer>`);
-    if ($('nav').length > 0) {
+    if ($('footer').length > 0) {
         alert('No se puede crear, ya existe un pie de página!');
     }else {
         $('#divComienzo').after(cuerpo);
     }
+}
+
+function cuerpoTabla()
+{
+    var div = $(`.divTabla`);
+    var cuerpo = $(`<span>Escoga sus filas:<input type='number' name='filas'></input></span><br/>
+                    <span>Escoga sus columnas:<input type='number' name='columnas'></input></span><br/>
+                    <button style="margin-left: 50px">Confirmar</button>
+                    <button>Cancelar</button>`);
+
+    $(div).append(cuerpo);
+
+    $('button:contains("Cancelar")').click(function(){
+        $(this).parent().remove();
+
+    });
+    $('button:contains("Confirmar")').click(function(){
+        var filas = $('input[name="filas"]').val();
+        var columnas = $('input[name="columnas"]').val();
+        var tabla = `<table border='1'><tbody>`;
+        for (var i = 0; i < filas; i++) {
+            tabla = tabla +`<tr>`;
+            for (var j = 0; j < columnas; j++) {
+                tabla = tabla + `<th> Col:${j}, Fila:${i}</th>`;
+            }
+            tabla = tabla + `</tr>`;
+        }
+        tabla = tabla + `</tbody></table>`;
+        var tablaJ = $(tabla);
+
+        $(document.body).append(tablaJ);
+        tablaJ.draggable();
+        $(this).parent().remove();
+    });
 }
