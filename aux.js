@@ -21,7 +21,8 @@ function comenzar(){
     div.append(`<p style='text-align:center;margin-top:5px'>Herramientas
     <span id='minimizar' class="glyphicon glyphicon-minus" aria-hidden="true"></span>
     </p>`);
-    var alto = $('div').css('height');
+    herramientas();
+    var alto = $('#divComienzo').css('height');
     $('#minimizar').click(function(){
         if ($('#divComienzo').css('height') != '32px') {
             $('#divComienzo').css('height', '32px');
@@ -31,7 +32,6 @@ function comenzar(){
             herramientas();
         }
     });
-    herramientas();
     // consejos(); Lo comento para ahorrar tiempo en desarrollo
     // coordRaton();
     botonCambioVista();
