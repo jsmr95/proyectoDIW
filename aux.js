@@ -34,6 +34,7 @@ function comenzar(){
     herramientas();
     // consejos(); Lo comento para ahorrar tiempo en desarrollo
     // coordRaton();
+    botonCambioVista();
 }
 
 function consejos()
@@ -177,6 +178,16 @@ function botones()
 
 }
 
+function botonCambioVista()
+{
+    $(document.body).on('change',function(){
+        if ($(document.body)[0].children.length != 1) {
+            var cuerpo = $('<button id="vistaPreliminar">Vista Preliminar</button>');
+            $('#divComienzo').before(cuerpo);
+        }
+    });
+}
+
 function generarLabel(string)
 {
     return $(`<p style='text-align:center;margin-top:5px'>${string} </p>`);
@@ -263,7 +274,7 @@ function cuerpoDiv()
                 position:absolute'></div>`);
         }else {
             var div = $(`<div style="width:${ancho};height:${altura}
-                        ; position:absolute; border:solid 1px"></div>`);
+                        ; position:absolute"></div>`);
         }
         $(document.body).append(div);
         div.draggable();
@@ -348,7 +359,9 @@ function cuerpoEncabezado()
 </nav>`);
     if ($('nav').length > 0) {
         alert('No se puede crear, ya existe un encabezado!');
-    }else {
+    }else if ($(document.body)[0].children.length != 1) {
+        $('#divComienzo').prev().before(cuerpo);
+    }else{
         $('#divComienzo').before(cuerpo);
     }
 }
