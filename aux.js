@@ -180,12 +180,14 @@ function botones()
 
 function botonCambioVista()
 {
-    $(document.body).on('change',function(){
-        if ($(document.body)[0].children.length != 1) {
-            var cuerpo = $('<button id="vistaPreliminar">Vista Preliminar</button>');
-            $('#divComienzo').before(cuerpo);
-        }
-    });
+    //NO ME LO HACE BIEN
+
+    // $(document.body).on('change',function(){
+    //     if ($(document.body)[0].children.length != 1) {
+    //         var cuerpo = $('<button id="vistaPreliminar">Vista Preliminar</button>');
+    //         $('#divComienzo').before(cuerpo);
+    //     }
+    // });
 }
 
 function generarLabel(string)
@@ -230,6 +232,7 @@ function cuerpoTitulo()
         h.draggable();
         $(this).parent().remove();
     });
+    console.log($('.divTitulo').length);
 }
 
 function cuerpoDiv()
