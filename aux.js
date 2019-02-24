@@ -141,9 +141,11 @@ function botones()
     $(':button').click(function(){
         switch ($(this)[0].innerHTML) {
             case 'Titulo':
-                boton('Titulo');
-                cuerpoTitulo();
-                break;
+                if ($('.divTitulo').length == 0) {
+                    boton('Titulo');
+                    cuerpoTitulo();
+                    break;
+                }
             case 'Encabezado':
                 boton('Encabezado');
                 cuerpoEncabezado();
@@ -180,14 +182,15 @@ function botones()
 
 function botonCambioVista()
 {
-    //NO ME LO HACE BIEN
-
-    // $(document.body).on('change',function(){
-    //     if ($(document.body)[0].children.length != 1) {
-    //         var cuerpo = $('<button id="vistaPreliminar">Vista Preliminar</button>');
-    //         $('#divComienzo').before(cuerpo);
-    //     }
-    // });
+    //Habria que ver que al clicar en titulo, el propio div ya es un elemento mas
+    //Pero no se ha introducido nada aun
+    $(document).on('click',function(){
+        // if ($(document.body)[0].children.length != 1) {
+        //     var cuerpo = $('<button id="vistaPreliminar">Vista Preliminar</button>');
+        //     $('#divComienzo').before(cuerpo);
+        // }
+        console.log($(document.body)[0].children.length);
+    });
 }
 
 function generarLabel(string)
@@ -232,7 +235,6 @@ function cuerpoTitulo()
         h.draggable();
         $(this).parent().remove();
     });
-    console.log($('.divTitulo').length);
 }
 
 function cuerpoDiv()
@@ -362,8 +364,8 @@ function cuerpoEncabezado()
 </nav>`);
     if ($('nav').length > 0) {
         alert('No se puede crear, ya existe un encabezado!');
-    }else if ($(document.body)[0].children.length != 1) {
-        $('#divComienzo').prev().before(cuerpo);
+    // }else if ($(document.body)[0].children.length != 1) {
+    //     $('#divComienzo').prev().before(cuerpo);
     }else{
         $('#divComienzo').before(cuerpo);
     }
