@@ -150,9 +150,8 @@ button{
     position:absolute;
     border-radius: 7px;
     top: 35%;
-    bottom: 45%;
+    bottom: auto;
     left: 40%;
-    right: 40%;
     border: solid 1px;
     background-color: white;
 }

@@ -179,6 +179,7 @@ function botones()
             case 'Enlace':
                 if ($('.divEnlace').length == 0) {
                     boton('Enlace');
+                    cuerpoEnlace();
                     break;
                 }
             case 'Tabla':
@@ -426,6 +427,32 @@ function cuerpoTabla()
 
         $(document.body).append(tablaJ);
         tablaJ.draggable();
+        $(this).parent().remove();
+    });
+}
+
+function cuerpoEnlace()
+{
+    var div = $(`.divEnlace`);
+    var cuerpo = $(`<span>Introduzca su url:<input type='text' name='url'></input></span>
+                    <span>(http://www.google.es)</span><br>
+                    <span>Escoga el nombre del enlace:<input type='text' name='nombre'></input></span><br/>
+                    <button style="margin-left: 50px">Confirmar</button>
+                    <button>Cancelar</button>`);
+
+    $(div).append(cuerpo);
+
+    $('button:contains("Cancelar")').click(function(){
+        $(this).parent().remove();
+
+    });
+    $('button:contains("Confirmar")').click(function(){
+        var url = $('input[name="url"]').val();
+        var nombre = $('input[name="nombre"]').val();
+        var a = $(`<a href='${url}'>${nombre}<a>`);
+
+        $(document.body).append(a);
+        a.draggable();
         $(this).parent().remove();
     });
 }
