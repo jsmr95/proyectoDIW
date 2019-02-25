@@ -194,15 +194,12 @@ function botones()
 
 function botonCambioVista()
 {
-    //Habria que ver que al clicar en titulo, el propio div ya es un elemento mas
-    //Pero no se ha introducido nada aun
-    $(document).on('click',function(){
-        // if ($(document.body)[0].children.length != 1) {
-        //     var cuerpo = $('<button id="vistaPreliminar">Vista Preliminar</button>');
-        //     $('#divComienzo').before(cuerpo);
-        // }
-        console.log($(document.body)[0].children.length);
-    });
+    if ($(document.body)[0].children.length == 2) {
+        var cuerpo = $(`<a id="vistaPreliminar" href='vista.html' class='btn btn-primary'>
+        Vista Preliminar
+        </a>`);
+        $('#divComienzo').before(cuerpo);
+    }
 }
 
 function generarLabel(string)
@@ -246,6 +243,7 @@ function cuerpoTitulo()
         $(document.body).append(h);
         h.draggable();
         $(this).parent().remove();
+        botonCambioVista();
     });
 }
 
@@ -376,8 +374,8 @@ function cuerpoEncabezado()
 </nav>`);
     if ($('nav').length > 0) {
         alert('No se puede crear, ya existe un encabezado!');
-    // }else if ($(document.body)[0].children.length != 1) {
-    //     $('#divComienzo').prev().before(cuerpo);
+    }else if ($(document.body)[0].children.length != 1) {
+        $('#divComienzo').prev().before(cuerpo);
     }else{
         $('#divComienzo').before(cuerpo);
     }

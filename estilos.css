@@ -21,14 +21,20 @@
 }
 
 #botonCambio{
+    top:10px;
     position: absolute;
     text-align: center;
     right: 49%;
     width: auto;
+    z-index: 50;
 }
 
 #vistaPreliminar{
-    
+    position: absolute;
+    text-align: center;
+    right: 49%;
+    width: auto;
+    z-index: 50;
 }
 
 .titulo{
