@@ -147,17 +147,13 @@ function botones()
                     break;
                 }
             case 'Encabezado':
-                if ($('.divEncabezado').length == 0) {
-                    boton('Encabezado');
-                    cuerpoEncabezado();
-                    break;
-                }
+                boton('Encabezado');
+                cuerpoEncabezado();
+                break;
             case 'Pie Página':
-                if ($('.divPie').length == 0) {
-                    boton('Pie Página');
-                    cuerpoPie();
-                    break;
-                }
+                boton('Pie Página');
+                cuerpoPie();
+                break;
             case 'Formulario':
                 if ($('.divFormulario').length == 0) {
                     boton('Formulario');
