@@ -303,6 +303,7 @@ function cuerpoDiv()
         $(document.body).append(div);
         div.draggable();
         $(this).parent().remove();
+        botonCambioVista();
     });
 }
 
@@ -336,6 +337,7 @@ function cuerpoInputs()
         $(document.body).append(input);
         input.draggable();
         $(this).parent().remove();
+        botonCambioVista();
     });
 }
 
@@ -385,8 +387,10 @@ function cuerpoEncabezado()
         alert('No se puede crear, ya existe un encabezado!');
     }else if ($(document.body)[0].children.length != 1) {
         $('#divComienzo').prev().before(cuerpo);
+        botonCambioVista();
     }else{
         $('#divComienzo').before(cuerpo);
+        botonCambioVista();
     }
 }
 
@@ -402,6 +406,7 @@ function cuerpoPie()
         alert('No se puede crear, ya existe un pie de página!');
     }else {
         $('#divComienzo').after(cuerpo);
+        botonCambioVista();
     }
 }
 
@@ -436,6 +441,7 @@ function cuerpoTabla()
         $(document.body).append(tablaJ);
         tablaJ.draggable();
         $(this).parent().remove();
+        botonCambioVista();
     });
 }
 
@@ -462,6 +468,7 @@ function cuerpoEnlace()
         $(document.body).append(a);
         a.draggable();
         $(this).parent().remove();
+        botonCambioVista();
     });
 }
 
@@ -491,6 +498,7 @@ function cuerpoImagen()
         $(document.body).append(img);
         img.draggable();
         $(this).parent().remove();
+        botonCambioVista();
     });
 }
 
