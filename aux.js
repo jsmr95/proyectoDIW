@@ -456,3 +456,30 @@ function cuerpoEnlace()
         $(this).parent().remove();
     });
 }
+
+function cuerpoImagen()
+{
+    var div = $(`.divImagen`);
+    var cuerpo = $(`<span>Introduzca su url de la imagen:<input type='text' name='url'></input></span>
+                    <span><input type='text' name='ancho'>Ancho</input></span><br>
+                    <span><input type='text' name='alto'>Alto</input></span><br>
+                    <button style="margin-left: 50px">Confirmar</button>
+                    <button>Cancelar</button>`);
+
+    $(div).append(cuerpo);
+
+    $('button:contains("Cancelar")').click(function(){
+        $(this).parent().remove();
+
+    });
+    $('button:contains("Confirmar")').click(function(){
+        var url = $('input[name="url"]').val();
+        var ancho = $('input[name="ancho"]').val();
+        var alto = $('input[name="alto"]').val();
+        var img = $(`<img href='${url}' height='${alto} width='${ancho}'><a>`);
+
+        $(document.body).append(img);
+        img.draggable();
+        $(this).parent().remove();
+    });
+}
