@@ -146,6 +146,7 @@ function botones()
                     cuerpoTitulo();
                     break;
                 }
+                break;
             case 'Encabezado':
                 boton('Encabezado');
                 cuerpoEncabezado();
@@ -159,35 +160,42 @@ function botones()
                     boton('Formulario');
                     break;
                 }
+                break;
             case 'Div':
                 if ($('.divDiv').length == 0) {
                     boton('Div');
                     cuerpoDiv();
                     break;
                 }
+                break;
             case 'Inputs':
                 if ($('.divInputs').length == 0) {
                     boton('Inputs');
                     cuerpoInputs();
                     break;
                 }
+                break;
             case 'Imagen':
                 if ($('.divImagen').length == 0) {
                     boton('Imagen');
+                    cuerpoImagen();
                     break;
                 }
+                break;
             case 'Enlace':
                 if ($('.divEnlace').length == 0) {
                     boton('Enlace');
                     cuerpoEnlace();
                     break;
                 }
+                break;
             case 'Tabla':
                 if ($('.divTabla').length == 0) {
                     boton('Tabla');
                     cuerpoTabla();
                     break;
                 }
+                break;
         }
     });
 
@@ -460,9 +468,11 @@ function cuerpoEnlace()
 function cuerpoImagen()
 {
     var div = $(`.divImagen`);
-    var cuerpo = $(`<span>Introduzca su url de la imagen:<input type='text' name='url'></input></span>
-                    <span><input type='text' name='ancho'>Ancho</input></span><br>
-                    <span><input type='text' name='alto'>Alto</input></span><br>
+    var cuerpo = $(`<span>Introduzca su url de la imagen:<input type='text' name='url'></input></span><br>
+                    <span>Ancho:<input type="range" name="ancho" min="10" max="999" onchange='calcula()'></span><br>
+                    <div name='pAncho'></div>
+                    <span>Alto:<input type="range" name="alto" min="10" max="999" onchange='calcula()'></span><br>
+                    <div name='pAlto'></div>
                     <button style="margin-left: 50px">Confirmar</button>
                     <button>Cancelar</button>`);
 
@@ -476,10 +486,20 @@ function cuerpoImagen()
         var url = $('input[name="url"]').val();
         var ancho = $('input[name="ancho"]').val();
         var alto = $('input[name="alto"]').val();
-        var img = $(`<img href='${url}' height='${alto} width='${ancho}'><a>`);
+        var img = $(`<img src='imagenes/${url}' height='${alto}px' width='${ancho}px'><a>`);
 
         $(document.body).append(img);
         img.draggable();
         $(this).parent().remove();
     });
+}
+
+function calcula()
+{
+    $('p[name="x"]').remove();
+    var ancho = $('input[name="ancho"]').val();
+    var alto = $('input[name="alto"]').val();
+    $('div[name="pAncho"]').append(`<p name='x'>${ancho}px</p>`);
+    $('div[name="pAlto"]').append(`<p name='x'>${alto}px</p>`);
+
 }
