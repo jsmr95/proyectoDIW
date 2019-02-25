@@ -147,34 +147,50 @@ function botones()
                     break;
                 }
             case 'Encabezado':
-                boton('Encabezado');
-                cuerpoEncabezado();
-                break;
+                if ($('.divEncabezado').length == 0) {
+                    boton('Encabezado');
+                    cuerpoEncabezado();
+                    break;
+                }
             case 'Pie Página':
-                boton('Pie Página');
-                cuerpoPie();
-                break;
+                if ($('.divPie').length == 0) {
+                    boton('Pie Página');
+                    cuerpoPie();
+                    break;
+                }
             case 'Formulario':
-                boton('Formulario');
-                break;
+                if ($('.divFormulario').length == 0) {
+                    boton('Formulario');
+                    break;
+                }
             case 'Div':
-                boton('Div');
-                cuerpoDiv();
-                break;
+                if ($('.divDiv').length == 0) {
+                    boton('Div');
+                    cuerpoDiv();
+                    break;
+                }
             case 'Inputs':
-                boton('Inputs');
-                cuerpoInputs();
-                break;
+                if ($('.divInputs').length == 0) {
+                    boton('Inputs');
+                    cuerpoInputs();
+                    break;
+                }
             case 'Imagen':
-                boton('Imagen');
-                break;
+                if ($('.divImagen').length == 0) {
+                    boton('Imagen');
+                    break;
+                }
             case 'Enlace':
-                boton('Enlace');
-                break;
+                if ($('.divEnlace').length == 0) {
+                    boton('Enlace');
+                    break;
+                }
             case 'Tabla':
-                boton('Tabla');
-                cuerpoTabla();
-                break;
+                if ($('.divTabla').length == 0) {
+                    boton('Tabla');
+                    cuerpoTabla();
+                    break;
+                }
         }
     });
 
