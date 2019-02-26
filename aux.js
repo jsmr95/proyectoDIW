@@ -519,9 +519,9 @@ function cuerpoFormulario()
     var cuerpo = $(`<span>Introduzca un titulo:<input type='text' name='titulo'></input></span><br><br>
                     <center><span><table border=1>
                     <thead> <tr><td>Nombre</td><td>Tipo</td></tr></thead>
-                    <tbody>
-                    <tr><td><input type='text'/></td><td><input type='text'/></td></tr>
-                    <tr><td><input type='text'/></td><td><input type='text'/></td></tr>
+                    <tbody id='inputs'>
+                    <tr><td><input type='text' name='nombre'></td><td><input type='text' name='tipo'></td></tr>
+                    <tr><td><input type='text' name='nombre'></td><td><input type='text' name='tipo'></td></tr>
                     </tbody>
                     </table></span></center>
                     <button type="button" class="btn-xs btn-default" onclick="insertarFila()">
@@ -535,12 +535,25 @@ function cuerpoFormulario()
 
     $('button:contains("Cancelar")').click(function(){
         $(this).parent().remove();
+    });
 
+    $('button:contains("Confirmar")').click(function(){
+        var form = `<div style='border: solid 1px' class='formulario'><form>`;
+        $('#inputs tr td input').each(function(i){
+            // if ($(this).attr('name') == 'tipo' && $(this).val() != '') {
+            //     console.log($(this).parent().next());
+                // form = form + `${$(this).val()}<input type='${$(this).val()}'></br></br>`;
+            // }
+        });
+        form = form + `<input type='submit' value='Enviar'><input type='reset' value='Reestablecer'></form></div>`;
+        $(document.body).append(form);
+        $('.formulario').draggable();
+        $(this).parent().remove();
     });
 }
 
 function insertarFila()
 {
-    $('tbody').append("<tr><td><input type='text'/></td><td><input type='text'/></td></tr>");
-    $('.divFormulario')[0].css('height','auto');
+    $('tbody').append("<tr><td><input type='text'name='nombre'></td><td><input type='text'name='tipo'></td></tr>");
+    $('.divFormulario').css('height','auto');
 }
