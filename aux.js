@@ -521,12 +521,13 @@ function cuerpoFormulario()
                     <thead> <tr><td>Nombre</td><td>Tipo</td></tr></thead>
                     <tbody>
                     <tr><td><input type='text'/></td><td><input type='text'/></td></tr>
-                    <tr><td>3</td><td>4</td></tr>
+                    <tr><td><input type='text'/></td><td><input type='text'/></td></tr>
                     </tbody>
                     </table></span></center>
                     <button type="button" class="btn-xs btn-default" onclick="insertarFila()">
                       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     </button><br>
+                    <p>Tipos: 'text', 'button', 'checkbox', 'password', 'number' </p><br>
                     <button style="margin-left: 50px">Confirmar</button>
                     <button>Cancelar</button>`);
 
@@ -541,4 +542,5 @@ function cuerpoFormulario()
 function insertarFila()
 {
     $('tbody').append("<tr><td><input type='text'/></td><td><input type='text'/></td></tr>");
+    $('.divFormulario')[0].css('height','auto');
 }
