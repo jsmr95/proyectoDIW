@@ -158,6 +158,7 @@ function botones()
             case 'Formulario':
                 if ($('.divFormulario').length == 0) {
                     boton('Formulario');
+                    cuerpoFormulario();
                     break;
                 }
                 break;
@@ -510,4 +511,34 @@ function calcula()
     $('div[name="pAncho"]').append(`<p name='x'>${ancho}px</p>`);
     $('div[name="pAlto"]').append(`<p name='x'>${alto}px</p>`);
 
+}
+
+function cuerpoFormulario()
+{
+    var div = $(`.divFormulario`);
+    var cuerpo = $(`<span>Introduzca un titulo:<input type='text' name='titulo'></input></span><br><br>
+                    <center><span><table border=1>
+                    <thead> <tr><td>Nombre</td><td>Tipo</td></tr></thead>
+                    <tbody>
+                    <tr><td><input type='text'/></td><td><input type='text'/></td></tr>
+                    <tr><td>3</td><td>4</td></tr>
+                    </tbody>
+                    </table></span></center>
+                    <button type="button" class="btn-xs btn-default" onclick="insertarFila()">
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button><br>
+                    <button style="margin-left: 50px">Confirmar</button>
+                    <button>Cancelar</button>`);
+
+    $(div).append(cuerpo);
+
+    $('button:contains("Cancelar")').click(function(){
+        $(this).parent().remove();
+
+    });
+}
+
+function insertarFila()
+{
+    $('tbody').append("<tr><td><input type='text'/></td><td><input type='text'/></td></tr>");
 }
