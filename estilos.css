@@ -188,5 +188,9 @@ button{
 }
 
 .menuContextual {
-    
+    z-index: 1000;
+    position: absolute;
+    border: 1px solid;
+    width: auto;
+    height: auto;
 }
