@@ -178,10 +178,15 @@ button{
 }
 
 .formulario {
+    padding: 20px;
     position:absolute;
     border-radius: 7px;
     width: auto;
     height: auto;
     border: solid 1px;
     background-color: white;
+}
+
+.menuContextual {
+    
 }

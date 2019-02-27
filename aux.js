@@ -34,6 +34,7 @@ function comenzar(){
     });
     // consejos(); Lo comento para ahorrar tiempo en desarrollo
     // coordRaton();
+    botonDerecho();
     botonCambioVista();
 }
 
@@ -516,18 +517,30 @@ function calcula()
 function cuerpoFormulario()
 {
     var div = $(`.divFormulario`);
-    var cuerpo = $(`<span>Introduzca un titulo:<input type='text' name='titulo'></input></span><br><br>
+    var cuerpo = $(`<span>Introduzca un titulo:<input type='text' id='titulo'></input></span><br><br>
                     <center><span><table border=1>
                     <thead> <tr><td>Nombre</td><td>Tipo</td></tr></thead>
                     <tbody id='inputs'>
-                    <tr><td><input type='text' name='nombre'></td><td><input type='text' name='tipo'></td></tr>
-                    <tr><td><input type='text' name='nombre'></td><td><input type='text' name='tipo'></td></tr>
+                    <tr><td><input type='text' name='nombre'></td><td>
+                    <select>
+                        <option>text</option>
+                        <option>button</option>
+                        <option>checkbox</option>
+                        <option>number</option>
+                    </select>
+                    </td></tr>
+                    <tr><td><input type='text' name='nombre'></td><td>
+                    <select>
+                        <option>text</option>
+                        <option>button</option>
+                        <option>checkbox</option>
+                        <option>number</option>
+                    </select></td></tr>
                     </tbody>
                     </table></span></center>
                     <button type="button" class="btn-xs btn-default" onclick="insertarFila()">
                       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     </button><br>
-                    <p>Tipos: 'text', 'button', 'checkbox', 'password', 'number' </p><br>
                     <button style="margin-left: 50px">Confirmar</button>
                     <button>Cancelar</button>`);
 
@@ -538,22 +551,43 @@ function cuerpoFormulario()
     });
 
     $('button:contains("Confirmar")').click(function(){
-        var form = `<div style='border: solid 1px' class='formulario'><form>`;
+        var form = `<div style='border: solid 1px' class='formulario'><form><fieldset>`;
+        if ($('#titulo').val() != '') {
+            form = form + `<legend>${$('#titulo').val()}</legend>`;
+        }
         $('#inputs tr td input').each(function(i){
-            // if ($(this).attr('name') == 'tipo' && $(this).val() != '') {
-            //     console.log($(this).parent().next());
-                // form = form + `${$(this).val()}<input type='${$(this).val()}'></br></br>`;
-            // }
+            if ($(this).attr('name') == 'nombre' && $(this).val() != '') {
+                form = form + `${$(this).val()} <input type='${$(':selected')[i].innerHTML}'></br></br>`;
+            }
         });
-        form = form + `<input type='submit' value='Enviar'><input type='reset' value='Reestablecer'></form></div>`;
+        form = form + `<input type='submit' value='Enviar'><input type='reset' value='Reestablecer'></fieldset></form></div>`;
         $(document.body).append(form);
         $('.formulario').draggable();
         $(this).parent().remove();
+        botonCambioVista();
     });
 }
 
 function insertarFila()
 {
-    $('tbody').append("<tr><td><input type='text'name='nombre'></td><td><input type='text'name='tipo'></td></tr>");
+    $('tbody').append(`<tr><td><input type='text'name='nombre'></td><td><select>
+        <option>text</option>
+        <option>button</option>
+        <option>checkbox</option>
+        <option>number</option>
+    </select></td></tr>`);
     $('.divFormulario').css('height','auto');
+}
+
+function botonDerecho()
+{
+    document.oncontextmenu = function(){
+        return false;
+    }
+    
+    $(window).on('mousedown', function(e){
+        if (e.button == '2') {
+
+        }
+    });
 }
