@@ -590,10 +590,13 @@ function botonDerecho()
             if ($('.menuContextual').length > 0) {
                 $('.menuContextual').remove();
             }else {
-                var div = $(`<div class='menuContextual' style='top:${e.clientY}px; left:${e.clientX}px'>
-                <p>Hola</p>
-                </div>`);
+                var div = $(`<div class='menuContextual' style='top:${e.clientY}px; left:${e.clientX}px'> </div>`);
                 $(document.body).append(div);
+                switch (e.target.nodeName) {
+
+
+                }
+                console.log(e.target.nodeName);
             }
         }
     });
