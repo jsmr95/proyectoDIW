@@ -593,11 +593,18 @@ function botonDerecho()
                 var div = $(`<div class='menuContextual' style='top:${e.clientY}px; left:${e.clientX}px'> </div>`);
                 $(document.body).append(div);
                 switch (e.target.nodeName) {
-
-
+                    case 'HTML':
+                    menuHTML();
+                    break;
                 }
-                console.log(e.target.nodeName);
             }
         }
     });
+}
+
+function menuHTML()
+{
+    var p = $(`<h3>Hola</h3><br><br>`);
+    $('.menuContextual')[0].append($(`<button>Cambiar color fondo</button>`)[0]);
+    console.log(p[0]);
 }
