@@ -592,10 +592,19 @@ function botonDerecho()
             }else {
                 var div = $(`<div class='menuContextual' style='top:${e.clientY}px; left:${e.clientX}px'> </div>`);
                 $(document.body).append(div);
+
                 switch (e.target.nodeName) {
                     case 'HTML':
-                    menuHTML();
-                    break;
+                        menuHTML();
+                        break;
+                    case 'H1' :
+                    case 'H2' :
+                    case 'H3' :
+                    case 'H4' :
+                    case 'H5' :
+                    case 'H6' :
+                        menuH(e.target);
+                        break;
                 }
             }
         }
@@ -604,7 +613,76 @@ function botonDerecho()
 
 function menuHTML()
 {
-    var p = $(`<h3>Hola</h3><br><br>`);
-    $('.menuContextual')[0].append($(`<button>Cambiar color fondo</button>`)[0]);
-    console.log(p[0]);
+    $('.menuContextual')[0].append($(`<center><p>Modificar fondo </p></center>`)[0]);
+    $('.menuContextual')[0].append($(`<hr>`)[0]);
+    $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar color fondo </span>`)[0]);
+    $('.menuContextual')[0].append($(`<input type='color' id='colorFondo' class='opciones'></input>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+
+    $('#colorFondo').change(function(){
+        $(document.body).css('background-color', `${$(this).val()}`);
+        $('.menuContextual').remove();
+    });
+}
+
+function menuH(elem)
+{
+    $('.menuContextual')[0].append($(`<center><p>Modificar texto </p></center>`)[0]);
+    $('.menuContextual')[0].append($(`<hr>`)[0]);
+    $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar texto </span>`)[0]);
+    $('.menuContextual')[0].append($(`<input type='texto' id='texto' class='opciones'></input>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+    $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar color fondo </span>`)[0]);
+    $('.menuContextual')[0].append($(`<input type='color' id='colorFondo' class='opciones'></input>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+    $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar color letra </span>`)[0]);
+    $('.menuContextual')[0].append($(`<input type='color' id='colorLetra' class='opciones'></input>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+    $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar tamaño letra </span>`)[0]);
+    $('.menuContextual')[0].append($(`<select id='tamañoLetra'>
+        <option>---</option>
+        <option>10px</option>
+        <option>15px</option>
+        <option>20px</option>
+        <option>25px</option>
+        <option>30px</option>
+        <option>40px</option>
+        <option>50px</option>
+        <option>70px</option>
+        <option>100px</option>
+    </select>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+    $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar estilo letra </span>`)[0]);
+    $('.menuContextual')[0].append($(`<select id='estiloLetra'>
+        <option>-----</option>
+        <option>normal</option>
+        <option>italic</option>
+        <option>oblique</option>
+    </select>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+
+    $('#texto').change(function(){
+        $(elem).html(`${$(this).val()}`);
+        $('.menuContextual').remove();
+    });
+
+    $('#colorFondo').change(function(){
+        $(elem).css('background-color', `${$(this).val()}`);
+        $('.menuContextual').remove();
+    });
+
+    $('#colorLetra').change(function(){
+        $(elem).css('color', `${$(this).val()}`);
+        $('.menuContextual').remove();
+    });
+
+    $('#tamañoLetra').change(function(){
+        $(elem).css('font-size', `${$('#tamañoLetra :checked').val()}`);
+        $('.menuContextual').remove();
+    });
+
+    $('#estiloLetra').change(function(){
+        $(elem).css('font-style', `${$('#estiloLetra :checked').val()}`);
+        $('.menuContextual').remove();
+    });
 }
