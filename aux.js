@@ -400,7 +400,7 @@ function cuerpoPie()
 {
     $(`.divPie`).remove();
     var cuerpo = $(`<footer class="footer">
-		<div class="container-fluid">
+		<div class="container-fluid" >
 			<p>Place sticky footer content here.</p>
 		</div>
 	</footer>`);
@@ -605,6 +605,11 @@ function botonDerecho()
                     case 'H6' :
                         menuH(e.target);
                         break;
+                    case 'FOOTER':
+                        menuPie();
+                        break;
+                    default:
+                    console.log(e.target.nodeName);
                 }
             }
         }
@@ -683,6 +688,24 @@ function menuH(elem)
 
     $('#estiloLetra').change(function(){
         $(elem).css('font-style', `${$('#estiloLetra :checked').val()}`);
+        $('.menuContextual').remove();
+    });
+}
+
+function menuPie()
+{
+    ('.menuContextual')[0].append($(`<center><p>Modificar Pie de página </p></center>`)[0]);
+    $('.menuContextual')[0].append($(`<hr>`)[0]);
+    $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar color fondo </span>`)[0]);
+    $('.menuContextual')[0].append($(`<input type='color' id='colorFondo' class='opciones'></input>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+    $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar color letra </span>`)[0]);
+    $('.menuContextual')[0].append($(`<input type='color' id='colorLetra' class='opciones'></input>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+
+
+    $('#colorFondo').change(function(){
+        $(elem).css('background-color', `${$(this).val()}`);
         $('.menuContextual').remove();
     });
 }
