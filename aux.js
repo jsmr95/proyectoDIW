@@ -407,7 +407,7 @@ function cuerpoPie()
     if ($('footer').length > 0) {
         alert('No se puede crear, ya existe un pie de página!');
     }else {
-        $('#divComienzo').after(cuerpo);
+        $(document.body).append(cuerpo);
         botonCambioVista();
     }
 }
