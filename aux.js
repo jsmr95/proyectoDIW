@@ -604,6 +604,7 @@ function botonDerecho()
                     case 'H5' :
                     case 'H6' :
                     case 'P' :
+                    case 'A' :
                         menuH(e.target);
                         break;
                     case 'DIV':
@@ -740,7 +741,7 @@ function menuButton(elem)
 
 function menuEnlace(elem)
 {
-    $('.menuContextual')[0].append($(`<center><p>Modificar Botón </p></center>`)[0]);
+    $('.menuContextual')[0].append($(`<center><p>Modificar Enlace </p></center>`)[0]);
     $('.menuContextual')[0].append($(`<hr>`)[0]);
     $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar color fondo </span>`)[0]);
     $('.menuContextual')[0].append($(`<input type='color' id='colorFondo' class='opciones'></input>`)[0]);
