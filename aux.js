@@ -495,7 +495,7 @@ function cuerpoImagen()
         var url = $('input[name="url"]').val();
         var ancho = $('input[name="ancho"]').val();
         var alto = $('input[name="alto"]').val();
-        var img = $(`<img src='imagenes/${url}' height='${alto}px' width='${ancho}px'><a>`);
+        var img = $(`<img src='imagenes/${url}' height='${alto}px' width='${ancho}px'></img>`);
 
         $(document.body).append(img);
         img.draggable();
@@ -607,13 +607,19 @@ function botonDerecho()
                     case 'A' :
                     case 'TH' :
                         menuH(e.target);
+                        agregarEliminar(e.target);
                         break;
                     case 'DIV':
                     case 'FOOTER':
                         menuDiv(e.target);
+                        agregarEliminar(e.target);
                         break;
                     case 'BUTTON':
                         menuButton(e.target);
+                        agregarEliminar(e.target);
+                    case 'IMG':
+                        menuImg(e.target);
+                        agregarEliminar(e.target);
                         break;
                     default:
                     console.log(e.target.nodeName);
@@ -736,6 +742,50 @@ function menuButton(elem)
 
     $('#colorLetra').change(function(){
         $(elem).css('color', `${$(this).val()}`);
+        $('.menuContextual').remove();
+    });
+}
+
+function menuImg(elem)
+{
+    $('.menuContextual')[0].append($(`<center><p>Modificar Imagen </p></center>`)[0]);
+    $('.menuContextual')[0].append($(`<hr>`)[0]);
+    $('.menuContextual')[0].append($(`<span>Ancho:<input type="range" name="ancho" min="10" max="999" onchange='calcula()'></span>`)[0]);
+    $('.menuContextual')[0].append($(`<div name='pAncho'></div>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+    $('.menuContextual')[0].append($(`<span>Alto:<input type="range" name="alto" min="10" max="999" onchange='calcula()'></span>`)[0]);
+    $('.menuContextual')[0].append($(`<div name='pAlto'></div>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+    $('.menuContextual')[0].append($(`<center><button style="margin-left: 50px">Confirmar</button></center>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+
+
+    $('#colorFondo').change(function(){
+        $(elem).css('background-color', `${$(this).val()}`);
+        $('.menuContextual').remove();
+    });
+
+    $('#colorLetra').change(function(){
+        $(elem).css('color', `${$(this).val()}`);
+        $('.menuContextual').remove();
+    });
+
+    $('button:contains("Confirmar")').click(function(){
+        var ancho = $('input[name="ancho"]').val();
+        var alto = $('input[name="alto"]').val();
+
+        $(elem).css('width', `${ancho}`);
+        $(elem).css('height', `${alto}`);
+    });
+}
+
+function agregarEliminar(elem)
+{
+    $('.menuContextual')[0].append($(`<hr>`)[0]);
+    $('.menuContextual')[0].append($(`<center><button id='eliminar'>Eliminar elemento </button></center>`)[0]);
+
+    $('#eliminar').click(function(){
+        $(elem).remove();
         $('.menuContextual').remove();
     });
 }
