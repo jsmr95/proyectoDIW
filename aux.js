@@ -241,8 +241,12 @@ function accionBotonVista()
 {
     $('#vistaPreliminar').click(function(){
         var ventana = window.open('vista.html');
-        window.self.close();
-        // ventana.document.write('hola');
+        var todo = $(document.body);
+        // window.self.close();
+        ventana.onload = function(){
+            // ventana.document.body.innerHTML = 'hola!';
+            //Aqui vamos a pasar todo lo que hay en edicion
+        };
     });
 }
 
