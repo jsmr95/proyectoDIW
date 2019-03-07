@@ -17,7 +17,7 @@
     border-radius: 7px;
     border: solid 1px;
     z-index: 1;
-    background-color: white;
+    background-color:  #b3d9ff;
 }
 
 #botonCambio{
@@ -206,3 +206,7 @@ button{
 
     width: auto;
 } */
+
+.col-xs-9 {
+    background-color: #4d94ff;
+}

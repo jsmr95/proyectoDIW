@@ -605,6 +605,7 @@ function botonDerecho()
                     case 'H6' :
                     case 'P' :
                     case 'A' :
+                    case 'TH' :
                         menuH(e.target);
                         break;
                     case 'DIV':
@@ -719,29 +720,6 @@ function menuDiv(elem)
 function menuButton(elem)
 {
     $('.menuContextual')[0].append($(`<center><p>Modificar Botón </p></center>`)[0]);
-    $('.menuContextual')[0].append($(`<hr>`)[0]);
-    $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar color fondo </span>`)[0]);
-    $('.menuContextual')[0].append($(`<input type='color' id='colorFondo' class='opciones'></input>`)[0]);
-    $('.menuContextual')[0].append($(`<br>`)[0]);
-    $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar color letra </span>`)[0]);
-    $('.menuContextual')[0].append($(`<input type='color' id='colorLetra' class='opciones'></input>`)[0]);
-    $('.menuContextual')[0].append($(`<br>`)[0]);
-
-
-    $('#colorFondo').change(function(){
-        $(elem).css('background-color', `${$(this).val()}`);
-        $('.menuContextual').remove();
-    });
-
-    $('#colorLetra').change(function(){
-        $(elem).css('color', `${$(this).val()}`);
-        $('.menuContextual').remove();
-    });
-}
-
-function menuEnlace(elem)
-{
-    $('.menuContextual')[0].append($(`<center><p>Modificar Enlace </p></center>`)[0]);
     $('.menuContextual')[0].append($(`<hr>`)[0]);
     $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar color fondo </span>`)[0]);
     $('.menuContextual')[0].append($(`<input type='color' id='colorFondo' class='opciones'></input>`)[0]);
