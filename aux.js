@@ -38,6 +38,29 @@ function comenzar(){
     botonCambioVista();
 }
 
+function comenzar1(){
+    //Creo el div de herramientas
+    var div = $(`<div id='divComienzo'></div>`);
+    $(document.body).append(div);
+    div.draggable();
+    div.append(`<p style='text-align:center;margin-top:5px'>Herramientas
+    <span id='minimizar' class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+    </p>`);
+    herramientas();
+    var alto = $('#divComienzo').css('height');
+    $('#minimizar').click(function(){
+        if ($('#divComienzo').css('height') != '32px') {
+            $('#divComienzo').css('height', '32px');
+            $('#divComienzo .container').remove();
+        }else {
+            $('#divComienzo').css('height', `${alto}`);
+            herramientas();
+        }
+    });
+    botonDerecho();
+    botonCambioVista();
+}
+
 function consejos()
 {
     //Lo realizo con funciones callback, para que se ejecuten en serie
@@ -206,11 +229,21 @@ function botones()
 function botonCambioVista()
 {
     if ($(document.body)[0].children.length == 2) {
-        var cuerpo = $(`<a id="vistaPreliminar" href='vista.html' class='btn btn-primary'>
+        var cuerpo = $(`<a id="vistaPreliminar" class='btn btn-primary'>
         Vista Preliminar
         </a>`);
         $('#divComienzo').before(cuerpo);
+        accionBotonVista();
     }
+}
+
+function accionBotonVista()
+{
+    $('#vistaPreliminar').click(function(){
+        var ventana = window.open('vista.html');
+        window.self.close();
+        // ventana.document.write('hola');
+    });
 }
 
 function generarLabel(string)

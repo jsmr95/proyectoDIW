@@ -13,7 +13,13 @@
     <script src="cookies.js"></script>
     <script>
         $(document).ready(function(){
-            presentacion();
+            if(getCookie('comienzo'))
+            {
+                comenzar1();
+            }else {
+                presentacion();
+                setCookie('comienzo', 1);
+            }
         });
     </script>
     <body>
