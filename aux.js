@@ -259,16 +259,25 @@ function accionBotonVista()
             $('#divComienzo').remove();
             $('#vista').remove();
             $('body > *').off();
+            $(window).off('mousedown');
             botonEdicion();
         }else {
             $(this)[0].name = 'preliminar';
             $(this).html('Vista Preliminar');
             comenzar();
-            $('body > *').draggable();
-            botonDerecho();
+            recorre();
         }
     });
 
+}
+
+function recorre()
+{
+    $('body > *').each(function(i){
+        $(this).draggable();
+        console.log($(this));
+    });
+    botonDerecho();
 }
 
 function generarLabel(string)
