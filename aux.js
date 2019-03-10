@@ -35,7 +35,7 @@ function comenzar(){
     // consejos(); Lo comento para ahorrar tiempo en desarrollo
     // coordRaton();
     botonDerecho();
-    botonCambioVista();
+    botonCambioVista('preliminar');
 }
 
 function comenzar1(){
@@ -58,7 +58,7 @@ function comenzar1(){
         }
     });
     botonDerecho();
-    botonCambioVista();
+    botonCambioVista('preliminar');
 }
 
 function consejos()
@@ -226,10 +226,10 @@ function botones()
 
 }
 
-function botonCambioVista()
+function botonCambioVista(opc)
 {
     if ($(document.body)[0].children.length == 2) {
-        var cuerpo = $(`<a id="vistaPreliminar" class='btn btn-primary'>
+        var cuerpo = $(`<a id="vista" class='btn btn-primary' name="${opc}">
         Vista Preliminar
         </a>`);
         $('#divComienzo').before(cuerpo);
@@ -237,17 +237,38 @@ function botonCambioVista()
     }
 }
 
+function botonEdicion()
+{
+    var cuerpo = $(`<a id="vista" class='btn btn-primary' name="edicion">
+    Edicion
+    </a>`);
+    if ($('nav').length > 0) {
+        $('nav').after(cuerpo);
+    }else {
+        $('body').prepend(cuerpo);
+    }
+    accionBotonVista();
+}
+
 function accionBotonVista()
 {
-    $('#vistaPreliminar').click(function(){
-        var ventana = window.open('vista.html');
-        var todo = $(document.body);
-        // window.self.close();
-        ventana.onload = function(){
-            // ventana.document.body.innerHTML = 'hola!';
-            //Aqui vamos a pasar todo lo que hay en edicion
-        };
+    $('#vista').click(function(){
+        if ($(this)[0].name == 'preliminar') {
+            $(this)[0].name = 'edicion';
+            $(this).html('Edición');
+            $('#divComienzo').remove();
+            $('#vista').remove();
+            $('body > *').off();
+            botonEdicion();
+        }else {
+            $(this)[0].name = 'preliminar';
+            $(this).html('Vista Preliminar');
+            comenzar();
+            $('body > *').draggable();
+            botonDerecho();
+        }
     });
+
 }
 
 function generarLabel(string)
@@ -291,7 +312,7 @@ function cuerpoTitulo()
         $(document.body).append(h);
         h.draggable();
         $(this).parent().remove();
-        botonCambioVista();
+        botonCambioVista('preliminar');
     });
 }
 
@@ -342,7 +363,7 @@ function cuerpoDiv()
         $(document.body).append(div);
         div.draggable();
         $(this).parent().remove();
-        botonCambioVista();
+        botonCambioVista('preliminar');
     });
 }
 
@@ -376,7 +397,7 @@ function cuerpoInputs()
         $(document.body).append(input);
         input.draggable();
         $(this).parent().remove();
-        botonCambioVista();
+        botonCambioVista('preliminar');
     });
 }
 
@@ -426,10 +447,10 @@ function cuerpoEncabezado()
         alert('No se puede crear, ya existe un encabezado!');
     }else if ($(document.body)[0].children.length != 1) {
         $('#divComienzo').prev().before(cuerpo);
-        botonCambioVista();
+        botonCambioVista('preliminar');
     }else{
         $('#divComienzo').before(cuerpo);
-        botonCambioVista();
+        botonCambioVista('preliminar');
     }
 }
 
@@ -445,7 +466,7 @@ function cuerpoPie()
         alert('No se puede crear, ya existe un pie de página!');
     }else {
         $(document.body).append(cuerpo);
-        botonCambioVista();
+        botonCambioVista('preliminar');
     }
 }
 
@@ -480,7 +501,7 @@ function cuerpoTabla()
         $(document.body).append(tablaJ);
         tablaJ.draggable();
         $(this).parent().remove();
-        botonCambioVista();
+        botonCambioVista('preliminar');
     });
 }
 
@@ -507,7 +528,7 @@ function cuerpoEnlace()
         $(document.body).append(a);
         a.draggable();
         $(this).parent().remove();
-        botonCambioVista();
+        botonCambioVista('preliminar');
     });
 }
 
@@ -537,7 +558,7 @@ function cuerpoImagen()
         $(document.body).append(img);
         img.draggable();
         $(this).parent().remove();
-        botonCambioVista();
+        botonCambioVista('preliminar');
     });
 }
 
@@ -601,7 +622,7 @@ function cuerpoFormulario()
         $(document.body).append(form);
         $('.formulario').draggable();
         $(this).parent().remove();
-        botonCambioVista();
+        botonCambioVista('preliminar');
     });
 }
 
