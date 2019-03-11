@@ -142,9 +142,9 @@ button{
     position:absolute;
     border-radius: 7px;
     top: 35%;
-    bottom: 40%;
     left: 40%;
-    right: 40%;
+    height: auto;
+    width: auto;
     border: solid 1px;
     padding: 10px;
     background-color: white;
@@ -156,6 +156,8 @@ button{
     top: 35%;
     bottom: auto;
     left: 40%;
+    height: auto;
+    width: auto;
     border: solid 1px;
     padding: 10px;
     background-color: white;
@@ -167,6 +169,8 @@ button{
     top: 35%;
     bottom: auto;
     left: 40%;
+    height: auto;
+    width: auto;
     border: solid 1px;
     padding: 10px;
     background-color: white;

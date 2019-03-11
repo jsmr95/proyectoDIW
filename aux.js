@@ -318,7 +318,7 @@ function cuerpoTitulo()
     $('button:contains("Confirmar")').click(function(){
         var sele = $(':selected').text();
         var text = $('#textoTitulo').val();
-        var h = $(`<${sele}>${text}</${sele}>`);
+        var h = $(`<${sele} style='width:auto'>${text}</${sele}>`);
         $(document.body).append(h);
         h.draggable();
         $(this).parent().remove();
@@ -746,6 +746,7 @@ function botonDerecho()
                         break;
                     case 'DIV':
                     case 'FOOTER':
+                    case 'NAV':
                         menuDiv(e.target);
                         agregarEliminar(e.target);
                         break;
