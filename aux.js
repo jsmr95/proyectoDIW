@@ -740,6 +740,7 @@ function botonDerecho()
                     case 'P' :
                     case 'A' :
                     case 'TH' :
+                    case 'LI' :
                         menuH(e.target);
                         agregarEliminar(e.target);
                         break;
