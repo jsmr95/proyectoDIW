@@ -156,6 +156,9 @@ function herramientas()
                             <div class='row'>
                                 <button class='col-xs-9'>Tabla</button>
                             </div>
+                            <div class='row'>
+                                <button class='col-xs-9'>Lista</button>
+                            </div>
                             `);
     botones();
 }
@@ -221,6 +224,12 @@ function botones()
                     break;
                 }
                 break;
+            case 'Lista':
+                if ($('.divTabla').length == 0) {
+                    boton('Lista');
+                    cuerpoLista();
+                    break;
+                }
         }
     });
 
@@ -558,6 +567,72 @@ function cuerpoImagen()
 
         $(document.body).append(img);
         img.draggable();
+        $(this).parent().remove();
+        botonCambioVista('preliminar');
+    });
+}
+
+function cuerpoLista()
+{
+    var div = $(`.divLista`);
+    var cuerpo = $(`<span>Selecciona el tipo de lista:<select name='tipo'><option>Ordenada</option>
+                    <option>No ordenada</option></select></span><br><br>
+                    <span>Cuantos elementos:<input type="number" name="num"></span><br><br>
+                    <span>Hijos: </span><input type='checkbox' id='hijos'/><br/>
+                    <button style="margin-left: 50px">Confirmar</button>
+                    <button>Cancelar</button>`);
+
+    $(div).append(cuerpo);
+
+    $('button:contains("Cancelar")').click(function(){
+        $(this).parent().remove();
+
+    });
+    $('button:contains("Confirmar")').click(function(){
+        var tipo = $(':checked').val();
+        var num = $('input[name="num"]').val();
+        var elem;
+        if (tipo == 'Ordenada') {
+            elem = '<ol>';
+            console.log(tipo);
+        }else {
+            elem = '<ul>'
+        }
+        if ($('#hijos').prop('checked')) {
+            for (var i = 0; i < num; i++) {
+                var texto = prompt('Introduzca su texto: ');
+                elem = elem + `<li>${texto}</li>`;
+                var numh = parseInt(prompt('Núm de hijos (0-*):'));
+                for (var j = 0; j < numh; j++) {
+                    if (j == 0) {
+                        elem = elem + '<ul>';
+                    }
+                    var textoh = prompt('Introduzca su texto del hijo: ');
+                    elem = elem + `<li>${textoh}</li>`;
+                    if (j == numh-1) {
+                        elem = elem + '</ul>';
+                    }
+                }
+            }
+            if (tipo == 'Ordenada') {
+                elem = elem + '</ol>';
+            }else {
+                elem = elem + '</ul>';
+            }
+        }else {
+            for (var i = 0; i < num; i++) {
+                var texto = prompt('Introduzca su texto: ');
+                elem = elem + `<li>${texto}</li>`;
+            }
+            if (tipo == 'Ordenada') {
+                elem = elem + '</ol>';
+            }else {
+                elem = elem + '</ul>';
+            }
+        }
+
+        $(document.body).append($(elem));
+        $('ul, ol').draggable();
         $(this).parent().remove();
         botonCambioVista('preliminar');
     });

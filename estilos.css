@@ -126,6 +126,18 @@ button{
     background-color: white;
 }
 
+.divLista{
+    position:absolute;
+    border-radius: 7px;
+    top: 35%;
+    left: 38%;
+    height: auto;
+    width: auto;
+    border: solid 1px;
+    padding: 10px;
+    background-color: white;
+}
+
 .divInputs{
     position:absolute;
     border-radius: 7px;
