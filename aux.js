@@ -258,27 +258,19 @@ function accionBotonVista()
             $(this).html('Edición');
             $('#divComienzo').remove();
             $('#vista').remove();
-            $('body > *').off();
-            $(window).off('mousedown');
+            // $('body > *').off();
+            // $(window).off('mousedown');
             botonEdicion();
         }else {
             $(this)[0].name = 'preliminar';
             $(this).html('Vista Preliminar');
             comenzar();
-            recorre();
+            botonDerecho();
         }
     });
 
 }
 
-function recorre()
-{
-    $('body > *').each(function(i){
-        $(this).draggable();
-        console.log($(this));
-    });
-    botonDerecho();
-}
 
 function generarLabel(string)
 {
@@ -854,5 +846,8 @@ function agregarEliminar(elem)
     $('#eliminar').click(function(){
         $(elem).remove();
         $('.menuContextual').remove();
+        if ($(document.body)[0].children.length == 2) {
+            $('#vista').remove();
+        }
     });
 }
