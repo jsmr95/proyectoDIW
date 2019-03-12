@@ -270,8 +270,8 @@ function accionBotonVista()
             $(this).html('Edición');
             $('#divComienzo').remove();
             $('#vista').remove();
-            // $('body > *').off();
-            // $(window).off('mousedown');
+            $('body > *').off();
+            $(window).off('mousedown');
             botonEdicion();
         }else {
             $(this)[0].name = 'preliminar';
