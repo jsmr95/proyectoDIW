@@ -66,6 +66,7 @@
 
 .container{
     max-width: 150px;
+    height: auto;
 }
 
 button{
@@ -79,7 +80,7 @@ button{
     top: 35%;
     left: 40%;
     border: solid 1px;
-    background-color: white;
+    background-color: #ccffcc;
     padding: 10px;
 }
 
@@ -91,7 +92,7 @@ button{
     left: 40%;
     right: 40%;
     border: solid 1px;
-    background-color: white;
+    background-color: #ccffcc;
 }
 
 .divPie{
@@ -112,7 +113,7 @@ button{
     left: 40%;
     border: solid 1px;
     padding: 10px;
-    background-color: white;
+    background-color: #ccffcc;
 }
 
 .divDiv{
@@ -120,10 +121,11 @@ button{
     border-radius: 7px;
     top: 35%;
     left: 38%;
-    height: 165px;
+    height: auto;
+    width: auto;
     border: solid 1px;
     padding: 10px;
-    background-color: white;
+    background-color: #ccffcc;
 }
 
 .divLista{
@@ -135,7 +137,7 @@ button{
     width: auto;
     border: solid 1px;
     padding: 10px;
-    background-color: white;
+    background-color: #ccffcc;
 }
 
 .divInputs{
@@ -147,7 +149,7 @@ button{
     width: auto;
     border: solid 1px;
     padding: 10px;
-    background-color: white;
+    background-color: #ccffff;
 }
 
 .divImagen{
@@ -160,7 +162,7 @@ button{
     width: auto;
     border: solid 1px;
     padding: 10px;
-    background-color: white;
+    background-color: #ccffcc;
 }
 
 .divEnlace{
@@ -173,7 +175,7 @@ button{
     width: auto;
     border: solid 1px;
     padding: 10px;
-    background-color: white;
+    background-color: #ccffcc;
 }
 
 .divTabla{
@@ -185,7 +187,7 @@ button{
     height: auto;
     border: solid 1px;
     padding: 10px;
-    background-color: white;
+    background-color: #ccffcc;
 }
 
 .footer{

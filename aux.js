@@ -5,7 +5,9 @@ function presentacion(){
         $(div).append(`<h1 class="titulo1">Proyecto DIW</h1>`);
         $(div).append(`<button class='col-md-4 col-md-offset-4'> Comenzar </button>`);
         $(document.body).append(div);
-        $(div).fadeIn(1000);
+        $(window).click(function(){
+            $(div).fadeIn(2000);
+        });
         $('button').click(function(){
             $('div').remove();
             comenzar();
@@ -32,8 +34,8 @@ function comenzar(){
             herramientas();
         }
     });
-    // consejos(); Lo comento para ahorrar tiempo en desarrollo
-    // coordRaton();
+    consejos(); //Lo comento para ahorrar tiempo en desarrollo
+    coordRaton();
     botonDerecho();
     botonCambioVista('preliminar');
 }
@@ -57,6 +59,7 @@ function comenzar1(){
             herramientas();
         }
     });
+    coordRaton();
     botonDerecho();
     botonCambioVista('preliminar');
 }
@@ -89,42 +92,41 @@ function consejos()
                     setTimeout(function(){
                         $('.consejo').fadeOut(2000,function(){
                             $('.consejo').remove()
-
+                            if ($(document.body)[0].children.length == 2) {
+                                $('#vista').remove();
+                            }
                         }) }
                         ,3000);
                 })}
                 ,6000);
         })}
         ,6000);
+
 }
 
-// function coordRaton()
-// {
-//     var cuerpo = $(window);
-//     var output = $(`<div id="output" style="position:absolute; padding:5px;"></div>`);
-//     $(document.body).append(output);
-//     cuerpo.mousemove(function(evt) {
-//       var mousePos = oMousePos(cuerpo, evt);
-//       marcarCoords(output,mousePos.x, mousePos.y)
-//     });
-// }
-//
-// function marcarCoords(output, x, y) {
-//   output.innerHTML = ("x: " + x + ", y: " + y);
-//   output.style.top = (y + 10) + "px";
-//   output.style.left = (x + 10) + "px";
-//   output.style.backgroundColor = "#FFF";
-//   output.style.border = "1px solid #d9d9d9"
-//   canvas.style.cursor = "pointer";
-// }
-//
-// function oMousePos(cuerpo, evt) {
-//   var ClientRect = cuerpo.getBoundingClientRect();
-//   return { //objeto
-//     x: Math.round(evt.clientX - ClientRect.left),
-//     y: Math.round(evt.clientY - ClientRect.top)
-//   }
-// }
+function coordRaton()
+{
+    $(window).on('mousemove', function(e){
+        $('#output').html(`<h6>(${e.clientX}px, ${e.clientY}px)`);
+    });
+
+}
+
+function marcarCoords(output, x, y) {
+  output.style.top = (y + 10) + "px";
+  output.style.left = (x + 10) + "px";
+  output.style.backgroundColor = "#FFF";
+  output.style.border = "1px solid #d9d9d9"
+  canvas.style.cursor = "pointer";
+}
+
+function oMousePos(cuerpo, evt) {
+  var ClientRect = cuerpo.getBoundingClientRect();
+  return { //objeto
+    x: Math.round(evt.clientX - ClientRect.left),
+    y: Math.round(evt.clientY - ClientRect.top)
+  }
+}
 
 function herramientas()
 {
@@ -159,6 +161,7 @@ function herramientas()
                             <div class='row'>
                                 <button class='col-xs-9'>Lista</button>
                             </div>
+                            <div class='row' id="output" style="position:absolute; padding:5px;"><h6>(10px, 20px)</h6></div>
                             `);
     botones();
 }
@@ -273,7 +276,12 @@ function accionBotonVista()
         }else {
             $(this)[0].name = 'preliminar';
             $(this).html('Vista Preliminar');
-            comenzar();
+            if(getCookie('comienzo'))
+            {
+                comenzar1();
+            }else {
+                comenzar();
+            }
             botonDerecho();
         }
     });
@@ -329,8 +337,10 @@ function cuerpoTitulo()
 function cuerpoDiv()
 {
     var div = $(`.divDiv`);
-    var cuerpo = $(`<span>Escoga su ancho(en px):<input type='text' name='ancho'></input></span><br/>
-                    <span>Escoga su altura(en px):<input type='text' name='alto'></input></span><br/>
+    var cuerpo = $(`<span>Ancho:<input type="range" name="ancho" min="10" max="999" onchange='calcula()'></span><br>
+    <div name='pAncho'></div>
+    <span>Alto:<input type="range" name="alto" min="10" max="999" onchange='calcula()'></span><br>
+    <div name='pAlto'></div>
                     <span>Borde: </span><input type='checkbox' id='checkDiv'/><br/>
                     <button style="margin-left: 50px">Confirmar</button>
                     <button>Cancelar</button>`);
@@ -360,11 +370,11 @@ function cuerpoDiv()
     });
 
     $('button:contains("Confirmar")').click(function(){
-        var ancho = $(':text[name="ancho"]').val();
-        var altura = $(':text[name="alto"]').val();
+        var ancho = $('input[name="ancho"]').val();
+        var altura = $('input[name="alto"]').val();
         if ($('#checkDiv').prop('checked')) {
             var tam = $(':selected').text();
-            var div = $(`<div style='border:solid ${tam};width:${ancho};height:${altura};
+            var div = $(`<div style='border:solid ${tam};width:${ancho}px;height:${altura}px;
                 position:absolute'></div>`);
         }else {
             var div = $(`<div style="width:${ancho};height:${altura}
@@ -738,7 +748,6 @@ function botonDerecho()
                     case 'H5' :
                     case 'H6' :
                     case 'P' :
-                    case 'A' :
                     case 'TH' :
                     case 'LI' :
                         menuH(e.target);
@@ -755,6 +764,10 @@ function botonDerecho()
                         agregarEliminar(e.target);
                     case 'IMG':
                         menuImg(e.target);
+                        agregarEliminar(e.target);
+                        break;
+                    case 'A' :
+                        menuA(e.target);
                         agregarEliminar(e.target);
                         break;
                     default:
@@ -845,17 +858,30 @@ function menuDiv(elem)
 {
     $('.menuContextual')[0].append($(`<center><p>Modificar Cajón </p></center>`)[0]);
     $('.menuContextual')[0].append($(`<hr>`)[0]);
+    $('.menuContextual')[0].append($(`<span>Ancho:<input type="range" name="ancho" min="10" max="999" onchange='calcula()'></span>`)[0]);
+    $('.menuContextual')[0].append($(`<div name='pAncho'></div>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+    $('.menuContextual')[0].append($(`<span>Alto:<input type="range" name="alto" min="10" max="999" onchange='calcula()'></span>`)[0]);
+    $('.menuContextual')[0].append($(`<div name='pAlto'></div>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
     $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar color fondo </span>`)[0]);
     $('.menuContextual')[0].append($(`<input type='color' id='colorFondo' class='opciones'></input>`)[0]);
     $('.menuContextual')[0].append($(`<br>`)[0]);
-    // $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar color letra </span>`)[0]);
-    // $('.menuContextual')[0].append($(`<input type='color' id='colorLetra' class='opciones'></input>`)[0]);
-    // $('.menuContextual')[0].append($(`<br>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+    $('.menuContextual')[0].append($(`<center><button style="margin-left: 50px">Confirmar</button></center>`)[0]);
 
 
     $('#colorFondo').change(function(){
         $(elem).css('background-color', `${$(this).val()}`);
         $('.menuContextual').remove();
+    });
+
+    $('button:contains("Confirmar")').click(function(){
+        var ancho = $('input[name="ancho"]').val();
+        var alto = $('input[name="alto"]').val();
+
+        $(elem).css('width', `${ancho}`);
+        $(elem).css('height', `${alto}`);
     });
 }
 
@@ -926,5 +952,75 @@ function agregarEliminar(elem)
         if ($(document.body)[0].children.length == 2) {
             $('#vista').remove();
         }
+    });
+}
+
+function menuA(elem)
+{
+    $('.menuContextual')[0].append($(`<center><p>Modificar enlace </p></center>`)[0]);
+    $('.menuContextual')[0].append($(`<hr>`)[0]);
+    $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar texto </span>`)[0]);
+    $('.menuContextual')[0].append($(`<input type='texto' id='texto' class='opciones'></input>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+    $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar ruta </span>`)[0]);
+    $('.menuContextual')[0].append($(`<input type='texto' id='ruta' class='opciones'></input>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+    $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar color fondo </span>`)[0]);
+    $('.menuContextual')[0].append($(`<input type='color' id='colorFondo' class='opciones'></input>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+    $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar color letra </span>`)[0]);
+    $('.menuContextual')[0].append($(`<input type='color' id='colorLetra' class='opciones'></input>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+    $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar tamaño letra </span>`)[0]);
+    $('.menuContextual')[0].append($(`<select id='tamañoLetra'>
+        <option>---</option>
+        <option>10px</option>
+        <option>15px</option>
+        <option>20px</option>
+        <option>25px</option>
+        <option>30px</option>
+        <option>40px</option>
+        <option>50px</option>
+        <option>70px</option>
+        <option>100px</option>
+    </select>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+    $('.menuContextual')[0].append($(`<span class='opciones'>Cambiar estilo letra </span>`)[0]);
+    $('.menuContextual')[0].append($(`<select id='estiloLetra'>
+        <option>-----</option>
+        <option>normal</option>
+        <option>italic</option>
+        <option>oblique</option>
+    </select>`)[0]);
+    $('.menuContextual')[0].append($(`<br>`)[0]);
+
+    $('#texto').change(function(){
+        $(elem).html(`${$(this).val()}`);
+        $('.menuContextual').remove();
+    });
+
+    $('#colorFondo').change(function(){
+        $(elem).css('background-color', `${$(this).val()}`);
+        $('.menuContextual').remove();
+    });
+
+    $('#colorLetra').change(function(){
+        $(elem).css('color', `${$(this).val()}`);
+        $('.menuContextual').remove();
+    });
+
+    $('#tamañoLetra').change(function(){
+        $(elem).css('font-size', `${$('#tamañoLetra :checked').val()}`);
+        $('.menuContextual').remove();
+    });
+
+    $('#estiloLetra').change(function(){
+        $(elem).css('font-style', `${$('#estiloLetra :checked').val()}`);
+        $('.menuContextual').remove();
+    });
+
+    $('#ruta').change(function(){
+        $(elem).attr('href', `${$(this).val()}`);
+        $('.menuContextual').remove();
     });
 }
